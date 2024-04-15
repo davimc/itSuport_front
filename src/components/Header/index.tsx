@@ -1,18 +1,17 @@
-import { IconButton, Menu, Toolbar } from '@mui/material';
-import './index.css'
+import { IconButton, Toolbar } from '@mui/material';
 import AppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useTheme } from '@emotion/react';
+import './index.css'
 
 
 function Header() {
     const theme = useTheme();
     return(
-        <AppBar>
+        <AppBar className="header-container">
             <Toolbar>
-                
                 <IconButton
                 size="large"
                 edge="start"
