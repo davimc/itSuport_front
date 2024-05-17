@@ -1,9 +1,8 @@
-import { Box, FormControl, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import { useState } from 'react'
 import './index.css'
 import { DatePicker } from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
-import { Variant } from '@mui/material/styles/createTypography';
 import Form from '..';
 
 function NewJob() {
@@ -36,9 +35,7 @@ function NewJob() {
                     <div>
                         <DatePicker className="job-entry" label="Entrada"
                             value={entry}
-                            onChange={(newValue: Dayjs) => {
-                                setEntry(newValue);
-                            }} />
+                            />
                         <DatePicker className="job-authorization" label="Autorização" sx={{}} />
                         <DatePicker className="job-completion" label="Finalização" />
                     </div>
