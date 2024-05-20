@@ -1,6 +1,6 @@
 import { FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import { useState } from 'react'
-import './index.css'
+import './styles.css'
 import { DatePicker } from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
 import Form from '..';
