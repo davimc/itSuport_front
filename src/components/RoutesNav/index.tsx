@@ -1,4 +1,5 @@
 import { BsPerson, BsGear } from "react-icons/bs"
+import { Drawer, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import { Link } from "react-router-dom";
 import './styles.css'
 import { useState } from "react";
@@ -9,27 +10,40 @@ icons.set('job', [<BsGear/>, 'Serviço', 'jobs'])
 icons.set('client', [<BsPerson/>, 'Cliente', 'users'])
 
 function RoutesNav() {
-    //será jobs
+    const [open, setOpen] = useState(true)
     const [classActive, setClassActive] = useState('client');
-    return (
-        <aside className="navigation">
-            <ul>
+        return(
+            <div className="navigation">
+            <Drawer 
+            sx={{
+          width: 240,
+          flexShrink: 1,
+
+          '& .MuiDrawer-paper': {
+            width: 240,
+            boxSizing: 'border-box',
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}>
+            <List>
                 {Array.from(icons).map(([key,val]) => {
                     return(
-                        <li className={classActive == key? 'list active':'list'} id={key} onClick={() => setClassActive(key)}>
-                            <Link to={val[2]}>
-                                <span className="icon">
-                                    {val[0]}
-                                </span>
-                                <span className="text">{val[1]}</span>
-                            </Link>
-                        </li>
-
+                    <Link to={val[2]} >
+                    <ListItem className={(classActive == key? 'list active': 'list') } id={key} key = {key} onClick={() => setClassActive(key)}>
+                            <ListItemIcon className="icon" >
+                                {val[0]}
+                            </ListItemIcon>
+                            <ListItemText className="text" primary={val[1]}/>
+                    </ListItem>
+                    </Link>
                     )
                 })}
+                </List>
                 <div className="indicator"></div>
-            </ul>
-        </aside>
-    )
-}
+            </Drawer>
+        </div>
+        )
+    }
 export default RoutesNav

@@ -5,11 +5,10 @@ import './styles.css'
 
 function RoutesViewer() {
     return (
-        <div className="routes-viewer">
-            <Router>
-                <div className="routes-nav">
-                    <RoutesNav />
-                </div>
+        <Router>
+
+            <div className="routes-viewer">
+
                 <Routes>
                     <Route path='/' element={<NewJob />} />
                     <Route path='/jobs' element={<NewJob />} />
@@ -20,13 +19,13 @@ function RoutesViewer() {
     <Route path='/exchanges' element={<ExchangeCard/>}/>*/}
 
                 </Routes>
-                {/*<div className='cardnav'>
-                        <CardNav />
-                    </div>*/}
+            </div>
 
-            </Router>
+            <div className="routes-nav">
+                <RoutesNav />
+            </div>
+        </Router >
 
-        </div>
     )
 }
 export default RoutesViewer

@@ -1,14 +1,12 @@
 .routes-viewer {
-    height: auto;
-}
-.routes-nav {
-    position: absolute;
-    left: 0;
-}
-.routes-viewer .routes-nav {
-    /* position: relative; */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.routes-nav {
+    display: flex;
     justify-content: center;
+    margin-top: 0.5rem;
 }
