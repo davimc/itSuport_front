@@ -1,7 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import NewJob from '../forms/NewJobs'
-import RoutesNav from '../RoutesNav'
+import NewJob from '../forms/Jobs/NewJobs'
 import './styles.css'
+import ListJobs from '../forms/Jobs/ListJobs'
 
 function RoutesViewer() {
     return (
@@ -10,7 +10,7 @@ function RoutesViewer() {
             <div className="routes-viewer">
 
                 <Routes>
-                    <Route path='/' element={<NewJob />} />
+                    <Route path='/' element={<ListJobs />} />
                     <Route path='/jobs' element={<NewJob />} />
                     {/*<Route path='/stores' element={<StoreCard/>}/>
 
@@ -22,7 +22,7 @@ function RoutesViewer() {
             </div>
 
             <div className="routes-nav">
-                <RoutesNav />
+                {/* todo Nav*/}
             </div>
         </Router >
 
