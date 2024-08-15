@@ -11,15 +11,13 @@ export type Job = {
 
 export type NewJob = {
     entry: Dayjs,
-    teste: number,
     clientName: string,
     deviceType: string,
     deviceSerial: string,
     deviceBrand: string,
     deviceModel: string, 
     deviceObs: string,
-    type: string,
-    status: string
+    typeJob: string,
 }
 
 export type JobDescription = {

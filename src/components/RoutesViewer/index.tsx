@@ -11,8 +11,10 @@ function RoutesViewer() {
             <div className="routes-viewer">
 
                 <Routes>
+                    {/* Jobs */}
                     <Route path='/' element={<ListJobs />} />
                     <Route path='/jobs' element={<FormJob />} />
+                    {/* Clients */}
                     {/*<Route path='/stores' element={<StoreCard/>}/>
 
                     //<Route path='/employees' element={<EmployeeCard/>}/>
