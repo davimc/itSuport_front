@@ -18,12 +18,7 @@ function FormJob() {
     const handleDeviceSerial = (event: ChangeEvent<HTMLInputElement>) => {setDeviceSerial(event.target.value)}
     const handleDeviceBrand = (event: ChangeEvent<HTMLInputElement>) => {setDeviceBrand(event.target.value)}
     const handleDeviceModel = (event: ChangeEvent<HTMLInputElement>) => {setDeviceModel(event.target.value)}
-    const handleDeviceObs = (event: ChangeEvent<HTMLInputElement>) => {setDeviceObs(event.target.value)}
-    const handleTypeJob = (event: ChangeEvent<HTMLInputElement>) => {setTypeJob(event.target.value)}
-    const handleEntryJob = (event: ChangeEvent<HTMLDate>) => {
-        const newDate = dayjs(event.target.value)
-        setEntry(newDate)
-    }
+
 
 
     const [name, setName] = useState<string>("")
@@ -34,7 +29,7 @@ function FormJob() {
     const [deviceObs, setDeviceObs] = useState<string>("");
     const [typeJob, setTypeJob] = useState<string>("");
     //todo format dd-mm-yyyy
-    const [entry, setEntry] = useState<Dayjs|null>(dayjs(new Date()));
+    const [entry, setEntry] = useState<Dayjs>(dayjs(new Date()));
 
     const handleSubmit = (e:MouseEvent<HTMLButtonElement>) =>{
         e.preventDefault();
@@ -78,7 +73,7 @@ function FormJob() {
                     <div className='input-container'>
                     <h3>Datas</h3>
                         <DatePicker className="date-input input" label="Entrada" format='DD/MM/YYYY'
-                            value={entry} onChange={(date) => setEntry(date)}
+                            value={entry} onChange={(date) => setEntry(date? date: dayjs(new Date()))}
                         />
                         <DatePicker className="date-input input" label="Autorização"  />
                         <DatePicker className="data-input input" label="Finalização" />
