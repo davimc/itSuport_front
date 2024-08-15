@@ -1,6 +1,7 @@
+import { Dayjs } from "dayjs"
 import { DeviceShort } from "./device"
 
-export type Job {
+export type Job = {
     id: String,
     createdAt: Date,
     finishedAt: Date
@@ -8,7 +9,20 @@ export type Job {
 
 }
 
-export type JobDescription {
+export type NewJob = {
+    entry: Dayjs,
+    teste: number,
+    clientName: string,
+    deviceType: string,
+    deviceSerial: string,
+    deviceBrand: string,
+    deviceModel: string, 
+    deviceObs: string,
+    type: string,
+    status: string
+}
+
+export type JobDescription = {
     device: DeviceShort,
     description: string
 }
