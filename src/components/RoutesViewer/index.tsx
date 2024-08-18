@@ -3,7 +3,8 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './styles.css'
 import ListJobs from '../forms/Jobs/ListJobs'
 import FormJob from '../forms/Jobs/FormJobs'
-import ClientList from '../forms/Client/ListClient'
+import ListClient from '../forms/Client/ListClient'
+import FormClient from '../forms/Client/FormClient'
 
 function RoutesViewer() {
     return (
@@ -16,10 +17,10 @@ function RoutesViewer() {
                     <Route path='/' element={<ListJobs />} />
                     <Route path='/jobs' element={<FormJob />} />
                     {/* Clients */}
-                    <Route path='/clients' element={<ClientList/>}/>
+                    <Route path='/clients' element={<ListClient/>}/>
+                    <Route path='/clients/new' element={<FormClient/>}/>
                     {/*
 
-                    //<Route path='/employees' element={<EmployeeCard/>}/>
                     //<Route path='/licenses' element={<LicenseCard/>}/>
     <Route path='/exchanges' element={<ExchangeCard/>}/>*/}
 
