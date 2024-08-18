@@ -18,41 +18,45 @@ function createData(
     document: string,
     type: string,
     district: string,
+    city: string,
     state: string,
     tel: string,
     email: string
 ) {
-    return { name, document, type, district, state, tel, email };
+    return { name, document, type, district, city, state, tel, email };
 }
 const rows = [
-    createData('Gilberto',"656.643.123-32", "Física", "São Francisco", "MA", "98 9 93222-1234", "Gilberto@gmail.com"),
-    /*createData(50, 'Adalberto Filisberto Gilberto Carlobertos', "Concluído", "Keneston", 240.50),
+    createData('Gilberto', "656.643.123-32", "FÍSICA", "São Francisco", "São Luís", "MA", "98 9 9322-1234", "Gilberto@gmail.com"),
+    createData('Adalberto Filisberto Gilberto Carlobertos', "00.123.545/0001-37", "JURÍDICA", "Centro", "São Luís", "MA", "9 98821-2346", "ABFC@google.com"),
+    /*
     createData(49, 'Filisberto', "Retorno", "Keneston", 370.10),
     createData(48, 'CArloberto', "Aguardando", "Davi", 0),*/
 ];
 
-export default function ListClient () {
+export default function ListClient() {
     return (
         <Head title='Serviços' infos={heads} >
             {rows.map(row => {
-                return(
+                return (
                     <TableRow
-                        key={row.os}
+                        key={row.document}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                        <TableCell >{row.name}</TableCell>
-                        <TableCell component="th" scope="row">
+                        <TableCell sx={{ width: 400 }}>{row.name}</TableCell>
+                        <TableCell component="th" scope="row" sx={{ minWidth: 150 }}>
                             {row.document}
                         </TableCell>
-                        <TableCell >{row.type}</TableCell>
-                        <TableCell >{row.district}</TableCell>
-                        <TableCell  >{row.state}</TableCell>
-                        <TableCell  >{row.tel}</TableCell>
-                        <TableCell  >{row.email}</TableCell>
+                        <TableCell> {row.type} </TableCell>
+                        <TableCell> {row.district} </TableCell>
+                        <TableCell> {row.city} </TableCell>
+                        <TableCell> {row.state} </TableCell>
+                        <TableCell> {row.tel} </TableCell>
+                        <TableCell> {row.email} </TableCell>
 
 
                     </TableRow>
-                )})}
-            </Head>
+                )
+            })}
+        </Head>
     )
 }
