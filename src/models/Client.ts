@@ -18,5 +18,5 @@ export type newClient = {
     state: string,
     tel: string,
     email: string,
-    birthdate: Date
+    birthdate: Date|null
 }
