@@ -2,6 +2,8 @@ import { Button, FormControlLabel, Radio, RadioGroup, TextField } from "@mui/mat
 import { DatePicker } from "@mui/x-date-pickers"
 import { useState, ChangeEvent, MouseEvent, FormEvent } from "react"
 import { newClient } from './../../../../models/Client'
+import Form from "../../elements/Form"
+import { Dayjs } from "dayjs"
 
 
 export default function FormClient() {
@@ -9,24 +11,18 @@ export default function FormClient() {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget)
-        let client:newClient = {
-            name: '',
-            document: '',
-            type: '',
-            cep: '',
-            street: '',
-            district: '',
-            city: '',
-            state: '',
-            tel: '',
-            email: '',}
+        let client: newClient = {name:'',document:'',type:'',
+            cep:'',street:'',district:'',
+            city:'',state:'',tel:'',email:'',
+            birthdate: null
+        };
+        client['name'] = 'Davi'
         for (let [key, value] of formData.entries()) {
-            // if(key === 'birthdate' && value) {
-            //     client [key as keyof newClient] = new Date(value.toString())
-            // }
-            // else {
-            client[key as keyof newClient] = value.toString();
-            // }
+            if (key === 'birthdate' && value) {
+                client.birthdate = new Date(value.toString());
+            } else if (key in client) {
+                client[key as keyof newClient] = value.toString();
+            }
         }
         console.log(client)
 
@@ -39,16 +35,17 @@ export default function FormClient() {
     //TODO END
     return (
         <div className='form-container'>
-            <form className="form-container" onSubmit={handleSubmit}>
+            <Form handleSubmit={handleSubmit}>
                 <div>
                     <h2>Informações</h2>
                     <div className='input-container'>
                         <TextField label="Nome" className='main-input input' variant="outlined" name="name" />
+                        <DatePicker className="date-input input" label="Nascimento" format='DD/MM/YYYY' name="nascimento" />
 
                     </div>
 
                     <div className="input-container">
-                        <h3>Informações do cliente e contato</h3>
+                        <h3>Cadastro contato</h3>
                         <TextField label="CEP" name="cep" type="number" className="main-input input" variant="outlined" />
                         <TextField label="Rua" name="street" className="main-input input" variant="outlined" />
                         <TextField label="Número" name="number" className="main-input input" variant="outlined" />
@@ -57,18 +54,14 @@ export default function FormClient() {
                         <TextField label="Estado" name="state" className='input' variant="outlined" />
                     </div>
                     <div className="input-container">
-                        <TextField className="main-input input" label="Email" name="email" type="email" variant="outlined"/>
-                        <TextField className="main-input input" label="Tel" name="tel" type="tel" variant="outlined"/>
+                        <TextField className="main-input input" label="Email" name="email" type="email" variant="outlined" />
+                        <TextField className="main-input input" label="Telefone" name="tel" type="tel" variant="outlined" />
                     </div>
                 </div>
 
                 <div className='lateral-form-container'>
 
                     <div className="date-container">
-                        <div className='input-container'>
-                            <h3>Datas</h3>
-                            <DatePicker className="date-input input" label="Nascimento" format='DD/MM/YYYY' name="nascimento" />
-                        </div>
                         <div className="input-container ">
                             <h3>Tipo</h3>
                             <RadioGroup defaultValue="fisica" name="type">
@@ -82,7 +75,7 @@ export default function FormClient() {
                     </div>
                 </div>
                 <Button type="submit">ok</Button>
-            </form>
+            </Form>
 
         </div >
     )
