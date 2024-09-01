@@ -1,13 +1,13 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 import './styles.css'
-import ListJobs from '../forms/Jobs/ListJobs'
-import FormJob from '../forms/Jobs/FormJobs'
-import ListClient from '../forms/Client/ListClient'
-import FormClient from '../forms/Client/FormClient'
+import ListJobs from '../views/Jobs/ListJobs'
+import FormJob from '../views/Jobs/FormJobs'
+import ListClient from '../views/Client/ListClient'
+import FormClient from '../views/Client/FormClient'
 import NavRouter from '../routers/NavRouter'
 import { Paper } from '@mui/material'
-import Welcome from '../forms/Welcome'
+import Welcome from '../views/Welcome'
 
 function RoutesViewer() {
     return (
