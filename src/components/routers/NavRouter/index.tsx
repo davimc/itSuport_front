@@ -1,49 +1,51 @@
-import { Box, Button, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { Box, Button, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, SvgIconTypeMap } from "@mui/material";
+import Handyman from '@mui/icons-material/Handyman';
+import PersonIcon from '@mui/icons-material/Person';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import { SvgIconComponent } from "@mui/icons-material";
+
+
 
 
 interface Props {
     open: boolean,
     toggleDrawer: Function
 }
+type ItemProps = {
+    icon: SvgIconComponent
+    desc: string
+}
 
-export default function NavRouter(props:Props) {
-    
+const listItens: ItemProps[] = [
+    { icon: PersonIcon, desc: 'Cliente' },
+    { icon: Handyman, desc: 'Serviços' },
+    { icon: EngineeringIcon, desc: 'Técnico'}
+]
+
+export default function NavRouter(props: Props) {
+
 
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={props.toggleDrawer(false)}>
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                {listItens.map((item, index) => (
+                    <ListItem key={index} disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                <item.icon />
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={item.desc} />
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
             <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
         </Box>
     );
     return (
         <div>
-                {DrawerList}
-        
+            {DrawerList}
+
         </div>
     )
 }
