@@ -1,18 +1,6 @@
-
-import TableCell from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
-import Head from '../../elements/HeadTable'
 import SimpleTable from '../../elements/SimpleTable';
 
-function createData(
-    os: number,
-    name: string,
-    status: string,
-    tec: string,
-    payment: number,
-) {
-    return { os, name, status, tec, payment };
-}
+
 const heads: string[] = ['OS', 'NOME','STATUS', 'TÉCNICO', 'VALOR']
 
 // const memo = useMemo(() => {
