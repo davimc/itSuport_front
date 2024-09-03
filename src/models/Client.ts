@@ -5,6 +5,13 @@ export type Client = {
     name: String,
     entryDate: Date,
     birthdate: Date,
+    document:string,
+    type: string,
+    district: string,
+    city:string,
+    state: string,
+    tel: string,
+    email: string
 }
 
 export type newClient = {
