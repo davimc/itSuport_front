@@ -1,36 +1,43 @@
+import { useEffect, useState } from 'react';
 import SimpleTable from '../../elements/SimpleTable';
+import { Job } from '../../../../models/Job'
+import axios from 'axios';
+import { BASE_URL } from '../../../../utils/request';
+import { TableCell, TableRow } from '@mui/material';
 
 
-const heads: string[] = ['OS', 'NOME','STATUS', 'TÉCNICO', 'VALOR']
-
-// const memo = useMemo(() => {
-//     axios.
-// })
+const heads: string[] = ['OS', 'NOME CLIENTE', 'STATUS', 'TÉCNICO', 'VALOR']
 
 
 export default function ListJobs() {
+    const [jobs, setJobs] = useState<Job[]>([])
+    useEffect(() => {
+        axios.get(`${BASE_URL}/jobs`)
+            .then(response => {
+                (setJobs(response.data.content))
+            })
+    }, [])
 
     return (
         <SimpleTable title='Serviços' infos={heads} >
-                <p>Correção</p>
-                <p>Mais tarde</p>
-            {/* {rows.map(row => {
-                return(
+            {jobs.map(job => {
+                return (
                     <TableRow
-                        key={row.os}
+                        key={job.os}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                        <TableCell >{row.os.toString().padStart(5, '0')}</TableCell>
+                        <TableCell >{job.os/*.toString().padStart(5, '0')*/}</TableCell>
                         <TableCell component="th" scope="row">
-                            {row.name}
+                            {job.name}
                         </TableCell>
-                        <TableCell >{row.status}</TableCell>
-                        <TableCell >{row.tec}</TableCell>
-                        <TableCell  >R$ {row.payment.toFixed(2)}</TableCell>
+                        <TableCell >{job.status}</TableCell>
+                        <TableCell >{job.tec}</TableCell>
+                        <TableCell  > {job.payment! ?? 'R$'} {job.payment/*.toFixed(2)*/}</TableCell>
 
                     </TableRow>
-                )})} */}
-            </SimpleTable>
-            
+                )
+            })}
+        </SimpleTable>
+
     )
 }
