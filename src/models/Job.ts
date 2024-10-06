@@ -4,13 +4,13 @@ import { DeviceShort } from "./device"
 export type Job = {
     id: String,
     os: number,
-    clientName: string //cliente name 
+    clientName: string 
     status:string,
-    tec: string,
+    techName: string,
     createdAt: Date,
+    type: string,
     finishedAt: Date
-    descriptions: String[],
-    payment: number
+    total: number
 }
 
 export type NewJob = {

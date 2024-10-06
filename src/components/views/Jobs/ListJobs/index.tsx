@@ -8,7 +8,7 @@ import { TableCell, TableRow } from '@mui/material';
 
 const heads: string[] = ['OS', 'NOME CLIENTE', 'STATUS', 'TÉCNICO', 'VALOR']
 
-
+    
 export default function ListJobs() {
     const [jobs, setJobs] = useState<Job[]>([])
     useEffect(() => {
@@ -26,13 +26,13 @@ export default function ListJobs() {
                         key={job.os}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                        <TableCell >{job.os/*.toString().padStart(5, '0')*/}</TableCell>
+                        <TableCell >{job.os.toString().padStart(5, '0')}</TableCell>
                         <TableCell component="th" scope="row">
-                            {job.name}
+                            {job.clientName}
                         </TableCell>
                         <TableCell >{job.status}</TableCell>
-                        <TableCell >{job.tec}</TableCell>
-                        <TableCell  > {job.payment! ?? 'R$'} {job.payment/*.toFixed(2)*/}</TableCell>
+                        <TableCell >{job.techName}</TableCell>
+                        <TableCell  > {job.total.toFixed(2)}</TableCell>
 
                     </TableRow>
                 )
