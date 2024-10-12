@@ -2,7 +2,7 @@ import { TableCell, TableRow } from "@mui/material"
 import axios from 'axios'
 import { BASE_URL } from '../../../../utils/request'
 import { Client } from '../../../../models/Client'
-import { useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import SimpleTable from "../../elements/SimpleTable"
 
 
@@ -11,10 +11,11 @@ const heads: string[] =
 
 export default function ListClient() {
     const [clients, setClients] = useState<Client[]>([])
-    useMemo(() => {
-        axios.get(`${BASE_URL}/clients`)
-            .then(response => { (setClients(response.data.content)) })
-    }, [])
+    //TODO adaptar users
+    // useEffect(() => {
+    //     axios.get(`${BASE_URL}/clients`)
+    //         .then(response => { (setClients(response.data.content)) })
+    // }, [])
     return (
         <SimpleTable title='Clientes' infos={heads} >
 
@@ -34,7 +35,6 @@ export default function ListClient() {
                         <TableCell> {client.state} </TableCell>
                         <TableCell> {client.tel} </TableCell>
                         <TableCell> {client.email} </TableCell>
-
 
                     </TableRow>
                 )

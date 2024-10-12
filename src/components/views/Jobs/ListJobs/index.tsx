@@ -4,9 +4,15 @@ import { Job } from '../../../../models/Job'
 import axios from 'axios';
 import { BASE_URL } from '../../../../utils/request';
 import { TableCell, TableRow } from '@mui/material';
+import { GridColDef } from '@mui/x-data-grid';
 
 
-const heads: string[] = ['OS', 'NOME CLIENTE', 'STATUS', 'TÉCNICO', 'VALOR']
+const heads: GridColDef[] = [
+    { field: 'os', headerName: 'OS', width: 70 },
+    { field: 'clientName', headerName: 'Name', width: 200 },
+    { field: 'status', headerName: 'STATUS', width: 130 },
+    { field: 'techName', headerName: 'Técnico', width: 180 },
+    { field: 'total', headerName: 'Valor R$', width: 120, type: 'number' }]
 
     
 export default function ListJobs() {
@@ -19,24 +25,9 @@ export default function ListJobs() {
     }, [])
 
     return (
-        <SimpleTable title='Serviços' infos={heads} >
-            {jobs.map(job => {
-                return (
-                    <TableRow
-                        key={job.os}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                        <TableCell >{job.os.toString().padStart(5, '0')}</TableCell>
-                        <TableCell component="th" scope="row">
-                            {job.clientName}
-                        </TableCell>
-                        <TableCell >{job.status}</TableCell>
-                        <TableCell >{job.techName}</TableCell>
-                        <TableCell  > {job.total.toFixed(2)}</TableCell>
-
-                    </TableRow>
-                )
-            })}
+        
+        <SimpleTable title='Serviços' columns={heads} rows={jobs} >
+            
         </SimpleTable>
 
     )

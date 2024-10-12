@@ -20,6 +20,7 @@
     "@mui/material": "^5.15.15",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/styles": "^5.15.15",
+    "@mui/x-data-grid": "^7.20.0",
     "@mui/x-date-pickers": "^7.2.0",
     "@types/uuid": "^10.0.0",
     "axios": "^1.7.7",
@@ -30,7 +31,8 @@
     "react-router": "6",
     "react-router-dom": "6",
     "styled-components": "^6.1.8",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "x-data-grid": "^2.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
