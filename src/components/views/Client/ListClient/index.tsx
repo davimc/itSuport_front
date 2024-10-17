@@ -1,44 +1,28 @@
 import { TableCell, TableRow } from "@mui/material"
 import axios from 'axios'
 import { BASE_URL } from '../../../../utils/request'
-import { Client } from '../../../../models/Client'
+import { shortUser } from '../../../../models/Client'
 import { useEffect, useState } from "react"
 import SimpleTable from "../../elements/SimpleTable"
+import { GridColDef } from "@mui/x-data-grid"
 
 
-const heads: string[] =
-    ['NOME', 'DOCUMENTO', 'TIPO', 'BAIRRO', 'CIDADE', 'UF', 'TELEFONE', 'EMAIL']
+const heads: GridColDef[] = [
+    { field: 'name', headerName: 'Nome', width: 200 },
+    { field: 'document', headerName: 'Documento', width: 180 },
+    { field: 'type', headerName: 'Tipo', width: 60 },
+    { field: 'email', headerName: 'E-mail', width: 180 },
+    { field: 'tel', headerName: 'Telefone', width: 180 }]
+
 
 export default function ListClient() {
-    const [clients, setClients] = useState<Client[]>([])
-    //TODO adaptar users
-    // useEffect(() => {
-    //     axios.get(`${BASE_URL}/clients`)
-    //         .then(response => { (setClients(response.data.content)) })
-    // }, [])
+    const [clients, setClients] = useState<shortUser[]>([])
+    
+    useEffect(() => {
+         axios.get(`${BASE_URL}/users/costumers`)
+             .then(response => { (setClients(response.data.content)) })
+     }, [])
     return (
-        <SimpleTable title='Clientes' infos={heads} >
-
-            {clients.map(client => {
-                return (
-                    <TableRow
-                        key={client.document}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                        <TableCell sx={{ width: 400 }}>{client.name}</TableCell>
-                        <TableCell component="th" scope="row" sx={{ minWidth: 150 }}>
-                            {client.document}
-                        </TableCell>
-                        <TableCell> {client.type} </TableCell>
-                        <TableCell> {client.district} </TableCell>
-                        <TableCell> {client.city} </TableCell>
-                        <TableCell> {client.state} </TableCell>
-                        <TableCell> {client.tel} </TableCell>
-                        <TableCell> {client.email} </TableCell>
-
-                    </TableRow>
-                )
-            })}
-        </SimpleTable>
+        <SimpleTable title='Clientes' columns={heads} rows={clients}  />
     )
 }
