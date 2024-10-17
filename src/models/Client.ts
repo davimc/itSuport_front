@@ -5,10 +5,10 @@ export type client = {
     name: String,
     entryDate: Date,
     birthdate: Date,
-    document:string,
+    document: string,
     type: string,
     district: string,
-    city:string,
+    city: string,
     state: string,
     tel: string,
     email: string,
@@ -17,7 +17,7 @@ export type client = {
 export type shortUser = {
     id: string,
     name: string,
-    email: string,    
+    email: string,
     tel: string,
     city: string
 }
@@ -33,5 +33,5 @@ export type newClient = {
     state: string,
     tel: string,
     email: string,
-    birthdate: Date|null
+    birthdate: Date | null
 }
