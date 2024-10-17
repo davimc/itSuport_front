@@ -3,7 +3,6 @@ import SimpleTable from '../../elements/SimpleTable';
 import { Job } from '../../../../models/Job'
 import axios from 'axios';
 import { BASE_URL } from '../../../../utils/request';
-import { TableCell, TableRow } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 
 
