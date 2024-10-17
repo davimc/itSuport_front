@@ -1,6 +1,6 @@
 
 
-export type Client = {
+export type client = {
     id: String,
     name: String,
     entryDate: Date,
@@ -11,7 +11,15 @@ export type Client = {
     city:string,
     state: string,
     tel: string,
-    email: string
+    email: string,
+    obs: string
+}
+export type shortUser = {
+    id: string,
+    name: string,
+    email: string,    
+    tel: string,
+    city: string
 }
 
 export type newClient = {
