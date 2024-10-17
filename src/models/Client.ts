@@ -17,6 +17,8 @@ export type client = {
 export type shortUser = {
     id: string,
     name: string,
+    document: string,
+    type: string,
     email: string,
     tel: string,
     city: string
