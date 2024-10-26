@@ -1,5 +1,7 @@
 import {     FormEvent, ReactNode,  } from "react";
 
+import './styles.css'
+
 interface entries {
     children: ReactNode,
     handleSubmit: (event:FormEvent<HTMLFormElement>) => void,

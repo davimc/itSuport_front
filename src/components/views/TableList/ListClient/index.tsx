@@ -2,8 +2,9 @@ import axios from 'axios'
 import { BASE_URL } from '../../../../utils/request'
 import { shortUser } from '../../../../models/Client'
 import { useEffect, useState } from "react"
-import SimpleTable from "../../elements/SimpleTable"
+
 import { GridColDef } from "@mui/x-data-grid"
+import SimpleTable from '../../elements/SimpleTable'
 
 
 const heads: GridColDef[] = [
@@ -16,12 +17,12 @@ const heads: GridColDef[] = [
 
 export default function ListClient() {
     const [clients, setClients] = useState<shortUser[]>([])
-    
+
     useEffect(() => {
-         axios.get(`${BASE_URL}/users/costumers`)
-             .then(response => { (setClients(response.data.content)) })
-     }, [])
+        axios.get(`${BASE_URL}/users/costumers`)
+            .then(response => { (setClients(response.data.content)) })
+    }, [])
     return (
-        <SimpleTable title='Clientes' columns={heads} rows={clients}  />
+        <SimpleTable title='Clientes' columns={heads} rows={clients} />
     )
 }

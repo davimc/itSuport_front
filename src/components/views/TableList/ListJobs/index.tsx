@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import SimpleTable from '../../elements/SimpleTable';
-import { Job } from '../../../../models/Job'
+
+
 import axios from 'axios';
-import { BASE_URL } from '../../../../utils/request';
+
 import { GridColDef } from '@mui/x-data-grid';
+import { BASE_URL } from '../../../../utils/request';
+import SimpleTable from '../../elements/SimpleTable';
+import { Job } from '../../../../models/Job';
 
 
 const heads: GridColDef[] = [

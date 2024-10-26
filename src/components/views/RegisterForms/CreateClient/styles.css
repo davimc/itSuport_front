@@ -1,0 +1,14 @@
+.cep::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.cep {
+    -moz-appearance: textfield;
+    width: 200px;
+    height: 40px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    /* Adicione aqui outros estilos personalizados */
+  }

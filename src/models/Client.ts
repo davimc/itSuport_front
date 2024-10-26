@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs"
 
 
 export type client = {
@@ -25,15 +26,15 @@ export type shortUser = {
 }
 
 export type newClient = {
-    name: string,
-    document: string,
-    type: string,
-    cep: string,
-    street: string,
-    district: string,
-    city: string,
-    state: string,
-    tel: string,
-    email: string,
-    birthdate: Date | null
+    name: String,
+    document: String,
+    type: String,
+    cep: String,
+    street: String,
+    district: String,
+    city: String,
+    state: String,
+    tel: String,
+    email: String,
+    birthdate: Dayjs | null
 }

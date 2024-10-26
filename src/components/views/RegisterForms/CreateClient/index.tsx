@@ -1,9 +1,11 @@
 import { Button, FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material"
 import { DatePicker } from "@mui/x-date-pickers"
-import { useState, ChangeEvent, MouseEvent, FormEvent } from "react"
-import { newClient } from './../../../../models/Client'
-import Form from "../../elements/Form"
+import { FormEvent } from "react"
+import { newClient } from '../../../../models/Client'
+import Form from "../Form"
 import { Dayjs } from "dayjs"
+
+import './styles.css'
 
 
 export default function FormClient() {
@@ -19,7 +21,7 @@ export default function FormClient() {
         client['name'] = 'Davi'
         for (let [key, value] of formData.entries()) {
             if (key === 'birthdate' && value) {
-                client.birthdate = new Date(value.toString());
+                client.birthdate = new Dayjs(value.toString());
             } else if (key in client) {
                 client[key as keyof newClient] = value.toString();
             }
@@ -34,7 +36,6 @@ export default function FormClient() {
 
     //TODO END
     return (
-        <div className='form-container'>
             <Form handleSubmit={handleSubmit}>
                 <div>
                     <h2>Informações</h2>
@@ -46,7 +47,7 @@ export default function FormClient() {
 
                     <div className="input-container">
                         <h3>Cadastro contato</h3>
-                        <TextField label="CEP" name="cep" type="number" className="main-input input" variant="outlined" />
+                        <TextField label="CEP" name="cep" type="number" className="main-input input cep" variant="outlined" />
                         <TextField label="Rua" name="street" className="main-input input" variant="outlined" />
                         <TextField label="Número" name="number" className="main-input input" variant="outlined" />
                         <TextField label="Bairro" name="district" className="input" variant="outlined" />
@@ -76,7 +77,5 @@ export default function FormClient() {
                 </div>
                 <Button type="submit">ok</Button>
             </Form>
-
-        </div >
     )
 }

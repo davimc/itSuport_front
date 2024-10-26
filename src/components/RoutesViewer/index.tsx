@@ -1,13 +1,16 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 import './styles.css'
-import ListJobs from '../views/Jobs/ListJobs'
-import FormJob from '../views/Jobs/FormJobs'
-import ListClient from '../views/Client/ListClient'
-import FormClient from '../views/Client/FormClient'
+
+
+import ListClient from '../views/TableList/ListClient'
+
 import NavRouter from '../routers/NavRouter'
 import { Paper } from '@mui/material'
 import Welcome from '../views/Welcome'
+import ListJobs from '../views/TableList/ListJobs'
+import FormJob from '../views/RegisterForms/CreateJobs'
+import FormClient from '../views/RegisterForms/CreateClient'
 
 function RoutesViewer() {
     return (
@@ -22,7 +25,7 @@ function RoutesViewer() {
                         <Route path='/' element={<Welcome/>} />
                         
                         <Route path='/jobs' element={<ListJobs />} />
-                        <Route path='/jobs' element={<FormJob />} />
+                        <Route path='/jobs/new' element={<FormJob />} />
                         {/* Clients */}
                         <Route path='/clients' element={<ListClient />} />
                         <Route path='/clients/new' element={<FormClient />} />
