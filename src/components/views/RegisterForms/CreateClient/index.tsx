@@ -1,4 +1,5 @@
 import { Button, FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material"
+import SearchIcon from '@mui/icons-material/Search';
 import { DatePicker } from "@mui/x-date-pickers"
 import { FormEvent } from "react"
 import { newClient } from '../../../../models/Client'
@@ -13,9 +14,10 @@ export default function FormClient() {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget)
-        let client: newClient = {name:'',document:'',type:'',
-            cep:'',street:'',district:'',
-            city:'',state:'',tel:'',email:'',
+        let client: newClient = {
+            name: '', document: '', type: '',
+            cep: '', street: '', district: '',
+            city: '', state: '', tel: '', email: '',
             birthdate: null
         };
         client['name'] = 'Davi'
@@ -36,8 +38,10 @@ export default function FormClient() {
 
     //TODO END
     return (
-            <Form handleSubmit={handleSubmit}>
+        <Form handleSubmit={handleSubmit}>
+            <div className="field-container">
                 <div>
+
                     <h2>Informações</h2>
                     <div className='input-container'>
                         <TextField label="Nome" className='main-input input' variant="outlined" name="name" />
@@ -45,26 +49,34 @@ export default function FormClient() {
 
                     </div>
 
-                    <div className="input-container">
-                        <h3>Cadastro contato</h3>
-                        <TextField label="CEP" name="cep" type="number" className="main-input input cep" variant="outlined" />
-                        <TextField label="Rua" name="street" className="main-input input" variant="outlined" />
-                        <TextField label="Número" name="number" className="main-input input" variant="outlined" />
-                        <TextField label="Bairro" name="district" className="input" variant="outlined" />
-                        <TextField label="Cidade" name="city" className='input' variant="outlined" />
-                        <TextField label="Estado" name="state" className='input' variant="outlined" />
-                    </div>
-                    <div className="input-container">
-                        <TextField className="main-input input" label="Email" name="email" type="email" variant="outlined" />
-                        <TextField className="main-input input" label="Telefone" name="tel" type="tel" variant="outlined" />
+                    <h3>Cadastro contato</h3>
+                    <div className="field-contacts">
+                        <div className="input-container address-container">
+                            <div className="cep-form item-1">
+                                <TextField label="CEP" name="cep" type="number" className="main-input input input-cep" variant="outlined" />
+                                <button className="search-button">
+                                    <SearchIcon />
+                                </button>
+                            </div>
+
+                            <TextField label="Rua" name="street" className="main-input input item-2" variant="outlined" />
+                            <TextField label="Número" name="number" className="main-input input item-3" variant="outlined" />
+                            <TextField label="Bairro" name="district" className="input item-4" variant="outlined" />
+                            <TextField label="Cidade" name="city" className='input item-5' variant="outlined" />
+                            <TextField label="Estado" name="state" className='input item-6' variant="outlined" />
+                        </div>
+                        <div className="input-container">
+                            <TextField className="main-input input" label="Email" name="email" type="email" variant="outlined" />
+                            <TextField className="main-input input" label="Telefone" name="tel" type="tel" variant="outlined" />
+                        </div>
                     </div>
                 </div>
 
                 <div className='lateral-form-container'>
 
                     <div className="date-container">
+                        <h3>Tipo</h3>
                         <div className="input-container ">
-                            <h3>Tipo</h3>
                             <RadioGroup defaultValue="fisica" name="type">
                                 <FormControlLabel value="fisica" control={<Radio />} label="Física" />
                                 <FormControlLabel value="juridica" control={<Radio />} label="Jurídica" />
@@ -75,7 +87,8 @@ export default function FormClient() {
 
                     </div>
                 </div>
-                <Button type="submit">ok</Button>
-            </Form>
+            </div>
+            <Button type="submit">ok</Button>
+        </Form >
     )
 }

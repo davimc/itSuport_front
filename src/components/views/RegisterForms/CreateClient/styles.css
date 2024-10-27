@@ -1,14 +1,60 @@
-.cep::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+.field-container {
+    overflow: auto;
+    width: 80vw;
+}
+.input-container {
+    
+    display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	row-gap: 0.4rem;
+    column-gap: 0.2rem;
+    
+}
+.field-contacts {
+    margin:0;
+    padding: 0;;
+    display: grid;
+	grid-template-columns: repeat(1, 1fr);
+}
+.address-container {
+    grid-template-areas:
+    "cep cep cep"	
+    "street street number"	
+    "city city state"	
+;
+}
+.input {
+    width: 100%;
+}
+.cep-form {
+    min-width: 370px;
+    max-width: 400px;
+
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+
+}
+.input-cep {
+    min-width: 300px;
+    max-width: 350px;
+}
+.address-container .item-1 {
+    grid-row-start: 1;
+	grid-column-start: 1;
+	grid-row-end: 2;
+	grid-column-end: 4;
+}
+.address-container .item-2 {
+    
+	grid-column-start: 1;
+	
+	grid-column-end: 3;
 }
 
-.cep {
-    -moz-appearance: textfield;
-    width: 200px;
-    height: 40px;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    /* Adicione aqui outros estilos personalizados */
-  }
+.search-button {
+    width: 40px;
+    height: 35px;
+    margin: auto;
+
+}
+

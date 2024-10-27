@@ -1,5 +1,10 @@
-
+form {
+    
+}
 .form-container{
-    height: 450px;
-    overflow: scroll;
+    height: 400px;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
 }
