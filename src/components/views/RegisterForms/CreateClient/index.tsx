@@ -4,9 +4,11 @@ import { DatePicker } from "@mui/x-date-pickers"
 import { FormEvent } from "react"
 import { newClient } from '../../../../models/Client'
 import Form from "../Form"
-import { Dayjs } from "dayjs"
+import dayjs from "dayjs"
 
 import './styles.css'
+import axios from "axios";
+import { BASE_URL } from "../../../../utils/request";
 
 
 export default function FormClient() {
@@ -15,20 +17,24 @@ export default function FormClient() {
         event.preventDefault();
         const formData = new FormData(event.currentTarget)
         let client: newClient = {
-            name: '', document: '', type: '',
+            name: '', document: '', type: 0,
             cep: '', street: '', district: '',
             city: '', state: '', tel: '', email: '',
-            birthdate: null
+            birthdate: new Date()
         };
-        client['name'] = 'Davi'
+        
         for (let [key, value] of formData.entries()) {
             if (key === 'birthdate' && value) {
-                client.birthdate = new Dayjs(value.toString());
+                
+                client['birthdate'] = new Date(value.toString());
             } else if (key in client) {
                 client[key as keyof newClient] = value.toString();
             }
         }
-        console.log(client)
+        axios.post(`${BASE_URL}/users`,{client})
+        .then(function (response) {console.log(response)})
+        .catch(function (response) {console.log(response)})
+
 
     }
     //todo transformar input cep em component  INIT
@@ -45,7 +51,7 @@ export default function FormClient() {
                     <h2>Informações</h2>
                     <div className='input-container'>
                         <TextField label="Nome" className='main-input input' variant="outlined" name="name" />
-                        <DatePicker className="date-input input" label="Nascimento" format='DD/MM/YYYY' name="nascimento" />
+                        <DatePicker className="date-input input" label="Nascimento" format='DD/MM/YYYY' name="birthdate" />
 
                     </div>
 
@@ -78,8 +84,8 @@ export default function FormClient() {
                         <h3>Tipo</h3>
                         <div className="input-container ">
                             <RadioGroup defaultValue="fisica" name="type">
-                                <FormControlLabel value="fisica" control={<Radio />} label="Física" />
-                                <FormControlLabel value="juridica" control={<Radio />} label="Jurídica" />
+                                <FormControlLabel value='1' control={<Radio />} label="Física" />
+                                <FormControlLabel value='2' control={<Radio />} label="Jurídica" />
                             </RadioGroup>
                             <TextField label="Documento" name="document" type="number" className="main-input input" variant="outlined" />
 
