@@ -18,22 +18,23 @@ export default function FormClient() {
         const formData = new FormData(event.currentTarget)
         let client: newClient = {
             name: '', document: '', type: 0,
-            cep: '', street: '', district: '',
+            cep: '', street: '', number: 0, district: '',
             city: '', state: '', tel: '', email: '',
-            birthdate: new Date()
+            birthdate: ''
         };
         
         for (let [key, value] of formData.entries()) {
             if (key === 'birthdate' && value) {
-                
-                client['birthdate'] = new Date(value.toString());
+                console.log(client[key as keyof newClient])
+                client['birthdate'] = new Date(value.toString()).toISOString().split('T')[0];
             } else if (key in client) {
-                client[key as keyof newClient] = value.toString();
+                client[key as keyof newClient] = typeof client[key as keyof newClient] ===  "string"? value: parseInt(value.toString());
             }
         }
-        axios.post(`${BASE_URL}/users`,{client})
+        console.log(client);
+        axios.post(`${BASE_URL}/users/costumers/create`,client)
         .then(function (response) {console.log(response)})
-        .catch(function (response) {console.log(response)})
+        .catch(function (error) {console.log(error)})
 
 
     }

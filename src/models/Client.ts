@@ -28,13 +28,14 @@ export type shortUser = {
 export type newClient = {
     name: String,
     document: String,
-    type: String,
+    type: number,
     cep: String,
     street: String,
+    number: number,
     district: String,
     city: String,
     state: String,
     tel: String,
     email: String,
-    birthdate: Dayjs
+    birthdate: String
 }
