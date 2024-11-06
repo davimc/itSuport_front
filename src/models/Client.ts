@@ -1,6 +1,10 @@
 import { Dayjs } from "dayjs"
 
-
+export type ClientName = {
+    id: String,
+    name: String,
+    document: String
+}
 export type client = {
     id: String,
     name: String,
@@ -25,7 +29,7 @@ export type shortUser = {
     city: string
 }
 
-export type newClient = {
+export type NewClient = {
     name: String,
     document: String,
     type: number,

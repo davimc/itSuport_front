@@ -1,22 +1,22 @@
-import { Button, FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
-import { DatePicker } from "@mui/x-date-pickers"
-import { FormEvent } from "react"
-import { newClient } from '../../../../models/Client'
-import Form from "../Form"
-import dayjs from "dayjs"
+import { Button, FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+import { FormEvent } from "react";
+import { NewClient } from '../../../../models/Client';
+import Form from "../Form";
 
-import './styles.css'
 import axios from "axios";
 import { BASE_URL } from "../../../../utils/request";
+import './../styles.css';
 
 
 export default function FormClient() {
 
+    //todo falta adicionar campos de endereço no formulário 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget)
-        let client: newClient = {
+        let client: NewClient = {
             name: '', document: '', type: 0,
             cep: '', street: '', number: 0, district: '',
             city: '', state: '', tel: '', email: '',
@@ -25,13 +25,11 @@ export default function FormClient() {
         
         for (let [key, value] of formData.entries()) {
             if (key === 'birthdate' && value) {
-                console.log(client[key as keyof newClient])
                 client['birthdate'] = new Date(value.toString()).toISOString().split('T')[0];
             } else if (key in client) {
                 client[key as keyof newClient] = typeof client[key as keyof newClient] ===  "string"? value: parseInt(value.toString());
             }
         }
-        console.log(client);
         axios.post(`${BASE_URL}/users/costumers/create`,client)
         .then(function (response) {console.log(response)})
         .catch(function (error) {console.log(error)})
@@ -43,7 +41,6 @@ export default function FormClient() {
     const LetterContainRegEx = /[a-zA-z]/;
     const ZIP_CODE_LENGTH = 5;
 
-    //TODO END
     return (
         <Form handleSubmit={handleSubmit}>
             <div className="field-container">
