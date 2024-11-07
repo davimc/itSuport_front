@@ -7,7 +7,8 @@ import Form from "../Form";
 
 import axios from "axios";
 import { BASE_URL } from "../../../../utils/request";
-import './../styles.css';
+import './../styles.css';//global
+import './styles.css'//local
 
 
 export default function FormClient() {
@@ -58,7 +59,7 @@ export default function FormClient() {
                         <div className="input-container address-container">
                             <div className="cep-form item-1">
                                 <TextField label="CEP" name="cep" type="number" className="main-input input input-cep" variant="outlined" />
-                                <button className="search-button">
+                                <button className="search-cep-button">
                                     <SearchIcon />
                                 </button>
                             </div>
