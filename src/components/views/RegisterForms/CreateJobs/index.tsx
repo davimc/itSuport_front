@@ -14,16 +14,13 @@ import './../styles.css';
 
 
 function FormJob() {
-    const [clientName, setClientName] = useState<String>()
-    const [clientList, setClientList] = useState<ClientName[]>([
-        { id: "id1235678", name: "Davi", document: "doc1246787654" },
-        { id: "id1223453", name: "GIovanna", document: "doc1236654" }
-    ])
+    const [clientName, setClientName] = useState<String>('')
+    const [clientList, setClientList] = useState<ClientName[]>([])
 
     useMemo(() => {
-        // axios.get(`${BASE_URL}/users/costumers`)
-        //     .then(function (response) { setClientList(response.data) })
-        //     .catch(function (error) { console.log(error) })
+        axios.get(`${BASE_URL}/users/costumers/summarized`)
+            .then(function (response) { setClientList(response.data.content) })
+            .catch(function (error) { console.log(error) })
 
     }, [])
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -60,28 +57,29 @@ function FormJob() {
     };
     return (
         <Form handleSubmit={handleSubmit} >
-            <div className="main-form-container">
-                <h2>Informações</h2>
-                <div className='input-container'>
+            <div className="field-container">
+                <div className="">
+                    <h2>Informações</h2>
+                    <div className='input-container'>
 
-                    <Select labelId="client-name-select" className='input' variant="outlined"
-                        value={clientName}
-                        onChange={handleChange}
-                    >
-                        {clientList.map((item, index) => (
-                            <MenuItem
-                                key={index}
-                                value={String(item.id)}>
-                                <Tooltip key={index} title={item.document} placement='right'>
-                                    <span>{item.name}</span>
-                                </Tooltip>
-                            </MenuItem>
-                        ))}
-                    </Select>
-                    <TextField label="Técnico" fullWidth className="main-input input" variant='outlined' name="techName" />
-                </div>
+                        <Select className='input' variant="outlined"
+                            value={clientName}
+                            onChange={handleChange}
+                        >
+                            {clientList.map((item, index) => (
+                                <MenuItem
+                                    key={index}
+                                    value={String(item.id)}>
+                                    <Tooltip key={index} title={item.document} placement='right'>
+                                        <span>{item.name}</span>
+                                    </Tooltip>
+                                </MenuItem>
+                            ))}
+                        </Select>
+                        <TextField label="Técnico" fullWidth className="main-input input" variant='outlined' name="techName" />
+                    </div>
 
-                {/*<div className="input-container">
+                    {/*<div className="input-container">
                     <h3>Dispositivo</h3>
                     <TextField label="Tipo" className="main-input input" variant="outlined" value={deviceType} onChange={handleDeviceType}/>
                     <TextField label="Serial" className="input" variant="outlined" value={deviceSerial} onChange={handleDeviceSerial}/>
@@ -90,29 +88,30 @@ function FormJob() {
                     <TextareaAutosize placeholder='Observações' className='input' 
                     value={deviceObs} onChange={handleChangeObs} />
                 </div>*/}
-            </div>
+                </div>
 
-            <div className='lateral-form-container'>
+                <div className='lateral-form-container'>
 
-                <div className="date-container">
-                    <div className='input-container'>
-                        <h3>Datas</h3>
-                        <DatePicker className="date-input input" label="Entrada" format='DD/MM/YYYY' name="entry" />
-                        <DatePicker className="date-input input" label="Autorização" />
-                        <DatePicker className="data-input input" label="Finalização" />
+                    <div className="date-container">
+                        <div className='input-container'>
+                            <h3>Datas</h3>
+                            <DatePicker className="date-input input" label="Entrada" format='DD/MM/YYYY' name="entry" />
+                            <DatePicker className="date-input input" label="Autorização" />
+                            <DatePicker className="data-input input" label="Finalização" />
+                        </div>
+                        <div className="input-container ">
+
+                            <RadioGroup defaultValue="Orçamento" name='jobType'>
+                                <h3>Tipo</h3>
+                                <FormControlLabel value="Orçamento" control={<Radio />} label="Orçamento" />
+                                <FormControlLabel value="Serviço" control={<Radio />} label="Serviço" />
+                                <FormControlLabel value="Garantia" control={<Radio />} label="Garantia" />
+                                <FormControlLabel value="Retorno" control={<Radio />} label="Retorno" />
+                            </RadioGroup>
+                        </div>
+
+
                     </div>
-                    <div className="input-container ">
-
-                        <RadioGroup defaultValue="Orçamento" name='jobType'>
-                            <h3>Tipo</h3>
-                            <FormControlLabel value="Orçamento" control={<Radio />} label="Orçamento" />
-                            <FormControlLabel value="Serviço" control={<Radio />} label="Serviço" />
-                            <FormControlLabel value="Garantia" control={<Radio />} label="Garantia" />
-                            <FormControlLabel value="Retorno" control={<Radio />} label="Retorno" />
-                        </RadioGroup>
-                    </div>
-
-
                 </div>
             </div>
             <Button>ok</Button>
