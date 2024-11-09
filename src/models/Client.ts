@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs"
 
-export type ClientName = {
+export type UserInfos = {
     id: String,
     name: String,
     document: String

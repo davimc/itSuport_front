@@ -5,7 +5,7 @@ import { FormEvent, useMemo, useState } from 'react';
 
 import { DatePicker } from '@mui/x-date-pickers';
 import axios from 'axios';
-import { ClientName } from '../../../../models/Client';
+import { UserInfos } from '../../../../models/Client';
 import { NewJob } from '../../../../models/Job';
 import { BASE_URL } from '../../../../utils/request';
 import Form from "../Form";
@@ -15,11 +15,26 @@ import './../styles.css';
 
 function FormJob() {
     const [clientName, setClientName] = useState<String>('')
-    const [clientList, setClientList] = useState<ClientName[]>([])
+    const [clientList, setClientList] = useState<UserInfos[]>([])
+    const [techName, setTechName] = useState<String>('')
+    const [techList, setTechList] = useState<UserInfos[]>([])
+    const [test, setTest] = useState<String>('ok')
 
     useMemo(() => {
-        axios.get(`${BASE_URL}/users/costumers/summarized`)
-            .then(function (response) { setClientList(response.data.content) })
+        axios.get(`${BASE_URL}/users/typified`)
+            .then(function (response) {
+
+                let clients: UserInfos[] = []
+                let techs: UserInfos[] = []
+
+                response.data.content.map(element => {
+
+                    //todo gambiarra confiando que só vai ter um perfil e apenas dois perfis
+                    element.type[0] == 'ROLE_COSTUMER' ? clients.push(element) : techs.push(element)
+                });
+                setClientList(clients)
+                setTechList(techs)
+            })
             .catch(function (error) { console.log(error) })
 
     }, [])
@@ -45,7 +60,7 @@ function FormJob() {
             .then(function (response) { console.log(response) })
             .catch(function (error) { console.log(error) })
     }
-    const handleChange = (event: SelectChangeEvent<typeof clientName>) => {
+    const handleChange = (event: SelectChangeEvent<UserInfos>) => {
         const {
             target: { value },
         } = event;
@@ -67,6 +82,18 @@ function FormJob() {
                             onChange={handleChange}
                         >
                             {clientList.map((item, index) => (
+                                <MenuItem
+                                    key={index}
+                                    value={String(item.id)}>
+                                    <Tooltip key={index} title={item.document} placement='right'>
+                                        <span>{item.name}</span>
+                                    </Tooltip>
+                                </MenuItem>
+                            ))}
+                        </Select>
+                        <Select className="input" label='Técnico' variant='outlined'
+                            value={techName} onChange={handleChange}>
+                            {techList.map((item, index) => (
                                 <MenuItem
                                     key={index}
                                     value={String(item.id)}>
