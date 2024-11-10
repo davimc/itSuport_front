@@ -10,6 +10,7 @@ import { NewJob } from '../../../../models/Job';
 import { BASE_URL } from '../../../../utils/request';
 import Form from "../Form";
 import './../styles.css';
+import SelectField from '../../../SelectField';
 
 
 
@@ -60,12 +61,12 @@ function FormJob() {
             .then(function (response) { console.log(response) })
             .catch(function (error) { console.log(error) })
     }
-    const handleChange = (event: SelectChangeEvent<UserInfos>) => {
+    const handleChange = (event: SelectChangeEvent<UserInfos>, setInfo: Function) => {
         const {
             target: { value },
         } = event;
 
-        setClientName(
+        setInfo(
             // On autofill we get a stringified value.
             value
         );
@@ -77,33 +78,12 @@ function FormJob() {
                     <h2>Informações</h2>
                     <div className='input-container'>
 
-                        <Select className='input' variant="outlined"
-                            value={clientName}
-                            onChange={handleChange}
-                        >
-                            {clientList.map((item, index) => (
-                                <MenuItem
-                                    key={index}
-                                    value={String(item.id)}>
-                                    <Tooltip key={index} title={item.document} placement='right'>
-                                        <span>{item.name}</span>
-                                    </Tooltip>
-                                </MenuItem>
-                            ))}
-                        </Select>
-                        <Select className="input" label='Técnico' variant='outlined'
-                            value={techName} onChange={handleChange}>
-                            {techList.map((item, index) => (
-                                <MenuItem
-                                    key={index}
-                                    value={String(item.id)}>
-                                    <Tooltip key={index} title={item.document} placement='right'>
-                                        <span>{item.name}</span>
-                                    </Tooltip>
-                                </MenuItem>
-                            ))}
-                        </Select>
-                        <TextField label="Técnico" fullWidth className="main-input input" variant='outlined' name="techName" />
+                        <SelectField
+                            handleChange={handleChange} setInfos={setClientName} 
+                            valueList={clientList}
+                            />
+                        <SelectField handleChange={handleChange} setInfos={setTechName} 
+                            valueList={techList} />
                     </div>
 
                     {/*<div className="input-container">
