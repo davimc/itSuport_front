@@ -7,8 +7,8 @@ import Form from "../Form";
 
 import axios from "axios";
 import { BASE_URL } from "../../../../utils/request";
-import './../styles.css';//global
-import './styles.css'//local
+import './../styles.css'; //global
+import './styles.css'; //local
 
 
 export default function FormClient() {
@@ -23,17 +23,17 @@ export default function FormClient() {
             city: '', state: '', tel: '', email: '',
             birthdate: ''
         };
-        
+
         for (let [key, value] of formData.entries()) {
             if (key === 'birthdate' && value) {
                 client['birthdate'] = new Date(value.toString()).toISOString().split('T')[0];
             } else if (key in client) {
-                client[key as keyof newClient] = typeof client[key as keyof newClient] ===  "string"? value: parseInt(value.toString());
+                client[key as keyof newClient] = typeof client[key as keyof newClient] === "string" ? value : parseInt(value.toString());
             }
         }
-        axios.post(`${BASE_URL}/users/costumers/create`,client)
-        .then(function (response) {console.log(response)})
-        .catch(function (error) {console.log(error)})
+        axios.post(`${BASE_URL}/users/costumers/create`, client)
+            .then(function (response) { console.log(response) })
+            .catch(function (error) { console.log(error) })
 
 
     }

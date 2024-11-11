@@ -1,4 +1,4 @@
-import { Button, FormControlLabel, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Tooltip } from '@mui/material';
+import { Button, Card, CardHeader, Checkbox, FormControlLabel, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Tooltip } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 
 import { FormEvent, useMemo, useState } from 'react';
@@ -79,10 +79,17 @@ function FormJob() {
                     <div className='input-container'>
 
                         <SelectField
-                            handleChange={handleChange} setInfos={setClientName} 
+                            handleChange={handleChange} setInfos={setClientName}
                             valueList={clientList}
-                            />
-                        <SelectField handleChange={handleChange} setInfos={setTechName} 
+                        />
+                        <Card>
+                            <CardHeader sx={{ px: 2, py: 1 }}
+                                avatar={
+                                    <Checkbox></Checkbox>
+                                }
+                                    />                
+                            </Card>
+                        <SelectField handleChange={handleChange} setInfos={setTechName}
                             valueList={techList} />
                     </div>
 
