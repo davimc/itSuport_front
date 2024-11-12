@@ -1,4 +1,4 @@
-import { Card, CardHeader, Checkbox, Divider, Grid, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { Button, Card, CardHeader, Checkbox, Divider, Grid, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { ReactNode, useState } from "react";
 
 function not(a: readonly number[], b: readonly number[]) {
@@ -12,7 +12,7 @@ function intersection(a: readonly number[], b: readonly number[]) {
 function union(a: readonly number[], b: readonly number[]) {
     return [...a, ...not(b, a)];
 }
-interface TransferListProps{
+interface TransferListProps {
     value: string
 }
 
@@ -152,5 +152,5 @@ export default function TransferList(props: TransferListProps) {
             <Grid item>{customList('Chosen', right)}</Grid>
         </Grid>
     );
-        )
+
 }
