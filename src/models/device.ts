@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from 'uuid'
 
 export type DeviceShort = {
     id: string, 
-    deviceType: string,
+    type: string,
     brand: string,
     model: string,
+    serial: string,
     characteristics: string,
     obs: string
 };
