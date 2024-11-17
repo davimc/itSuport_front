@@ -1,6 +1,8 @@
 import { Button, Card, CardHeader, Checkbox, Divider, Grid, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { ReactNode, useState } from "react";
 
+import { DeviceShort } from "../../../../models/Device";
+
 function not(a: readonly number[], b: readonly number[]) {
     return a.filter((value) => !b.includes(value));
 }
@@ -12,8 +14,10 @@ function intersection(a: readonly number[], b: readonly number[]) {
 function union(a: readonly number[], b: readonly number[]) {
     return [...a, ...not(b, a)];
 }
+
+
 interface TransferListProps {
-    value: string
+    infos: DeviceShort[]
 }
 
 export default function TransferList(props: TransferListProps) {
@@ -61,7 +65,7 @@ export default function TransferList(props: TransferListProps) {
         setChecked(not(checked, rightChecked));
     };
 
-    const customList = (title: ReactNode, items: readonly number[]) => (
+    const customList = (title: ReactNode, items: DeviceShort[] = props.infos) => (
         <Card>
             <CardHeader sx={{ px: 2, py: 1 }}
                 avatar={
@@ -91,18 +95,19 @@ export default function TransferList(props: TransferListProps) {
                 component="div"
                 role="list"
             >
-                {items.map((value: number) => {
-                    const labelId = `transfer-list-all-item-${value}-label`;
-
+                
+                {items.map((info: DeviceShort, index: number) => {
+                    const labelId = `transfer-list-all-item-${info.id}-label`;
+                    {console.log(props.infos)}
                     return (
                         <ListItemButton
-                            key={value}
+                            key={index}
                             role="listitem"
-                            onClick={handleToggle(value)}
+                            onClick={handleToggle(index)}
                         >
                             <ListItemIcon>
                                 <Checkbox
-                                    checked={checked.includes(value)}
+                                    checked={checked.includes(index)}
                                     tabIndex={-1}
                                     disableRipple
                                     inputProps={{
@@ -110,7 +115,7 @@ export default function TransferList(props: TransferListProps) {
                                     }}
                                 />
                             </ListItemIcon>
-                            <ListItemText id={labelId} primary={props.value} />
+                            <ListItemText id={labelId}>{info.brand}</ListItemText>
                         </ListItemButton>
                     );
                 })}

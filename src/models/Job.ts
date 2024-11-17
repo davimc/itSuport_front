@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs"
-import { DeviceShort } from "./device"
+import { DeviceShort } from "./Device"
 
 export type Job = {
     id: String,
