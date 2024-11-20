@@ -1,4 +1,5 @@
 import { Dayjs } from "dayjs"
+import { ObjShortModel } from "./Model"
 
 export type UserInfos = {
     id: String,
@@ -19,7 +20,7 @@ export type client = {
     email: string,
     obs: string
 }
-export type shortUser = {
+export interface UserShort extends ObjShortModel {
     id: string,
     name: string,
     document: string,

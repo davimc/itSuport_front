@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASE_URL } from '../../../../utils/request'
-import { shortUser } from '../../../../models/Client'
+import { UserShort } from '../../../../models/Client'
 import { useEffect, useState } from "react"
 
 import { GridColDef } from "@mui/x-data-grid"
@@ -16,7 +16,7 @@ const heads: GridColDef[] = [
 
 
 export default function ListClient() {
-    const [clients, setClients] = useState<shortUser[]>([])
+    const [clients, setClients] = useState<UserShort[]>([])
 
     useEffect(() => {
         axios.get(`${BASE_URL}/users/costumers`)
