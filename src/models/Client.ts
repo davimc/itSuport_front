@@ -27,13 +27,11 @@ export class UserShort implements ObjShortModel {
         this.document = document;
     }
 
-    getId: string =  this.id;
-    getName: string = this.name;
-    getComplement: string|null = null;
-    
-    getIdentifier: string = this.document;
-
-    getType: string = this.type
+    getId(): string { return this.id }
+    getName(): string { return this.name; }
+    getComplement(): string | null { return null }
+    getIdentifier(): string { return this.document }
+    getType(): string { return this.type }
 }
 
 export type NewClient = {

@@ -38,14 +38,12 @@ function FormJob() {
                 });
                 setClientList(clients)
                 setTechList(techs)
-                console.log(clients[0].getId)
             })
             .catch(function (error) { console.log(error) })
 
     }, [])
     const searchDevices = useEffect(() => {
         if ( clientId !== '') {
-            console.log('render')
             axios.get(`${BASE_URL}/devices/owner/${clientId}`)
                 .then((response) => console.log(response))
                 .catch((error) => console.log('error:', error))

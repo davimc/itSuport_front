@@ -18,8 +18,8 @@ export default function SelectField(props: selectFieldProps) {
                 <MenuItem
                     key={index}
                     value={(item.getId)}>
-                    <Tooltip key={index} title={item.getIdentifier} placement='right'>
-                        <span>{item.getName} {/*item.getComplement !== '' || item.getComplement !== undefined ? ' | ' + item.getComplement : ''*/} </span>
+                    <Tooltip key={index} title={item.getIdentifier()} placement='right'>
+                        <span>{item.getName()} {item.getComplement() !== null || item.getComplement() !== undefined ? ' | ' + item.getComplement() : ''} </span>
                     </Tooltip>
                 </MenuItem>
             ))}

@@ -15,9 +15,9 @@ export default class DeviceShort implements ObjShortModel {
         this.serial = serial;
     }
 
-    getId(): string = this.id;
-    getName: string = this.brand;
-    getComplement: string = this.model;
-    getIdentifier: string = this.serial;
-    getType: string = this.type;
+    getId(): string { return this.id };
+    getName(): string { return this.brand };
+    getComplement(): string { return this.model };
+    getIdentifier(): string { return this.serial };
+    getType(): string { return this.type };
 };
