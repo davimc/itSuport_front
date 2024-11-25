@@ -1,44 +1,56 @@
 import { Button, Card, CardHeader, Checkbox, FormControlLabel, Radio, RadioGroup, Select, SelectChangeEvent, TextField, Tooltip } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 
 import { DatePicker } from '@mui/x-date-pickers';
 import axios from 'axios';
-import { UserInfos } from '../../../../models/Client';
+import { UserInfos, UserShort } from '../../../../models/Client';
 import { NewJob } from '../../../../models/Job';
 import { BASE_URL } from '../../../../utils/request';
 import Form from "../Form";
 import './../styles.css';
 import SelectField from '../../../SelectField';
+import DeviceShort from '../../../../models/Device';
+
 
 
 
 function FormJob() {
-    const [clientName, setClientName] = useState<String>('')
-    const [clientList, setClientList] = useState<UserInfos[]>([])
-    const [techName, setTechName] = useState<String>('')
-    const [techList, setTechList] = useState<UserInfos[]>([])
-    const [test, setTest] = useState<String>('ok')
-
-    useMemo(() => {
+    const [clientId, setClientId] = useState<String>('')
+    const [clientList, setClientList] = useState<UserShort[]>([])
+    const [techId, setTechId] = useState<String>('')
+    const [techList, setTechList] = useState<UserShort[]>([])
+    const [deviceId, setDeviceId] = useState<String>('')
+    const [deviceList, setDeviceList] = useState<DeviceShort[]>([])
+ 
+    const searchUsers = useEffect(() => {
         axios.get(`${BASE_URL}/users/typified`)
             .then(function (response) {
 
-                let clients: UserInfos[] = []
-                let techs: UserInfos[] = []
+                let clients: UserShort[] = []
+                let techs: UserShort[] = []
 
                 response.data.content.map(element => {
 
-                    //todo gambiarra confiando que só vai ter um perfil e apenas dois perfis
+                    //todo resolver: gambiarra confiando que só vai ter um perfil e apenas dois perfis
                     element.type[0] == 'ROLE_COSTUMER' ? clients.push(element) : techs.push(element)
                 });
                 setClientList(clients)
                 setTechList(techs)
+                console.log(clients[0].getId)
             })
             .catch(function (error) { console.log(error) })
 
     }, [])
+    const searchDevices = useEffect(() => {
+        if ( clientId !== '') {
+            console.log('render')
+            axios.get(`${BASE_URL}/devices/owner/${clientId}`)
+                .then((response) => console.log(response))
+                .catch((error) => console.log('error:', error))
+            }
+        }, [clientId])
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget)
@@ -79,29 +91,15 @@ function FormJob() {
                     <div className='input-container'>
 
                         <SelectField
-                            handleChange={handleChange} setInfos={setClientName}
+                            handleChange={handleChange} setInfos={setClientId}
                             valueList={clientList}
                         />
-                        <Card>
-                            <CardHeader sx={{ px: 2, py: 1 }}
-                                avatar={
-                                    <Checkbox></Checkbox>
-                                }
-                                    />                
-                            </Card>
-                        <SelectField handleChange={handleChange} setInfos={setTechName}
+                        {/* <SelectField
+                            handleChange={handleChange} setInfos={setDeviceId}
+                            valueList={deviceList} /> */}
+                        <SelectField handleChange={handleChange} setInfos={setTechId}
                             valueList={techList} />
                     </div>
-
-                    {/*<div className="input-container">
-                    <h3>Dispositivo</h3>
-                    <TextField label="Tipo" className="main-input input" variant="outlined" value={deviceType} onChange={handleDeviceType}/>
-                    <TextField label="Serial" className="input" variant="outlined" value={deviceSerial} onChange={handleDeviceSerial}/>
-                    <TextField label="Marca" className='input' variant="outlined" value={deviceBrand} onChange={handleDeviceBrand}/>
-                    <TextField label="Modelo" className='input' variant="outlined" value={deviceModel} onChange={handleDeviceModel} />
-                    <TextareaAutosize placeholder='Observações' className='input' 
-                    value={deviceObs} onChange={handleChangeObs} />
-                </div>*/}
                 </div>
 
                 <div className='lateral-form-container'>

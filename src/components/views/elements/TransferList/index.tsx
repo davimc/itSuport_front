@@ -96,18 +96,18 @@ export default function TransferList(props: TransferListProps) {
                 role="list"
             >
                 
-                {items.map((info: DeviceShort, index: number) => {
+                {items.map((info: DeviceShort) => {
                     const labelId = `transfer-list-all-item-${info.id}-label`;
-                    {console.log(props.infos)}
+                    {console.log(info.brand)}
                     return (
                         <ListItemButton
-                            key={index}
+                        
                             role="listitem"
-                            onClick={handleToggle(index)}
+                            onClick={handleToggle(1)}
                         >
                             <ListItemIcon>
                                 <Checkbox
-                                    checked={checked.includes(index)}
+                                    checked={checked.includes(1)}
                                     tabIndex={-1}
                                     disableRipple
                                     inputProps={{
@@ -115,7 +115,7 @@ export default function TransferList(props: TransferListProps) {
                                     }}
                                 />
                             </ListItemIcon>
-                            <ListItemText id={labelId}>{info.brand}</ListItemText>
+                            <ListItemText id={labelId}>{info.serial}</ListItemText>
                         </ListItemButton>
                     );
                 })}

@@ -1,7 +1,8 @@
+import { Tooltip } from "@mui/material";
 import { DeviceShort } from "../../../../models/Device";
-import {PrintIcon, ComputerIcon, PowerIcon, LaptopIcon, ScannerIcon, HelpOutlineIcon, SmartphoneIcon} from '@mui/icons-material';
+import { PrintIcon, ComputerIcon, PowerIcon, LaptopIcon, ScannerIcon, HelpOutlineIcon, SmartphoneIcon } from '@mui/icons-material';
 
-const defineIcon = (type:string) => {
+const defineIcon = (type: string) => {
     switch (type) {
         case 'Impressora': PrintIcon; break;
         case 'Scanner': ScannerIcon; break;
@@ -13,9 +14,18 @@ const defineIcon = (type:string) => {
         case 'Outros': HelpOutlineIcon; break;
     }
 }
-export default function TransferListItemDevice(props: DeviceShort) {
+interface TransferItemProps {
+    item: DeviceShort,
+    tipPlacemet: string
+}
+
+export default function TransferListItemDevice(props: TransferItemProps) {
     <div>
-        <span></span>
+        <Tooltip title={props.item.serial} placement={props.tipPlacemet}>
+            <span>
+                defineIcon({props.item.type}) +" | "+ {props.item.brand} + " "+ {props.item.model}
+            </span>
+        </Tooltip>
     </div>
 
 
